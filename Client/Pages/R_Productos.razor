@@ -1,0 +1,111 @@
+﻿@page "/r_producto"
+
+<EditForm Model="@formData" OnValidSubmit="HandleSubmit">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+	<div class="container">
+		<div class="card shadow-lg">
+
+			<div class="card-header" style="background-color: gray">
+				<h3 class="card align-items-center" style="background-color: gray">Resgistro Producto</h3>
+			</div>
+
+			<div class="card-body" style="background-color: lightgray">
+				<div class="row">
+					<div class="col-4">
+						<label for="name">Nombre Producto:</label>
+						<InputText id="name" @bind-Value="formData.Nombre" class="form-control" />
+						<ValidationMessage For="@(() => formData.Nombre)" />
+					</div>
+
+					<div class="col-4">
+						<label for="Descripcion">Decripci&oacute;n Producto:</label>
+						<InputSelect id="Descripcion" @bind-Value="formData.Descripcion" class="form-select">
+							<option value="producto"></option>
+							<option value="producto1">Paracetamol</option>
+							<option value="producto2">Amoxicilina</option>
+							<option value="producto3">Ibuprofeno</option>
+						</InputSelect>
+						<ValidationMessage For="@(() => formData.Descripcion)" />
+					</div>
+
+					<div class="col-4">
+						<label for="Fecha">Fecha:</label>
+						<InputDate id="Fecha" @bind-Value="formData.Fecha" class="form-control" />
+						<ValidationMessage For="@(() => formData.Fecha)" />
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-4">
+						<label for="Cantidad">Cantidad de producto::</label>
+						<InputNumber id="Cantidad" @bind-Value="formData.Cantidad" class="form-control" min="0"/>
+						<ValidationMessage For="@(() => formData.Cantidad)" />
+					</div>
+
+					<div class="col-4">
+						<label for="Precio">Precio del producto:</label>
+						<InputNumber id="Precio" @bind-Value="formData.Precio" class="form-control" min="0" />
+						<ValidationMessage For="@(() => formData.Precio)" />
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-4">
+						<label for="TipoUnidad">Tipo de unidad:</label>
+						<InputNumber id="TipoUnidad" @bind-Value="formData.TipoUnidad" class="form-control" min="0"/>
+						<ValidationMessage For="@(() => formData.TipoUnidad)" />
+					</div>
+
+					<div class="col-4">
+						<label for="SucursalId">Sucursal ID:</label>
+						<InputNumber id="SucursalId" @bind-Value="formData.SucursalId" class="form-control" min="0"/>
+						<ValidationMessage For="@(() => formData.SucursalId)" />
+					</div>
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				@*Botones*@
+				<div class="row justify-content-center">
+					<div class="col-4">
+						<button type="button" class="btn btn-outline-primary" @onclick="HandleSubmit" style="background-color: white"> <i class="oi oi-file" /> Nuevo</button>
+						<button type="submit" class="btn btn-outline-success" style="background-color: white"> <i class="oi oi-document" /> Guardar</button>
+						<button type="button" class="btn btn-outline-danger" @onclick="HandleSubmit" style="background-color: white"><i class="io io-trash" /> Eliminar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</EditForm>
+
+@code {
+	private MyFormData formData = new MyFormData();
+
+	private class MyFormData
+	{
+		public string Nombre { get; set; }
+
+		public string Descripcion { get; set; }
+
+		public DateTime Fecha { get; set; }
+
+		public int Cantidad { get; set; }
+
+		public int Precio { get; set; }
+
+		public int TipoUnidad { get; set; }
+
+		public int SucursalId { get; set; }
+	}
+
+	private void HandleSubmit()
+	{
+		// Lógica para manejar el envío del formulario
+		// Puedes acceder a los datos en 'formData'
+		Console.WriteLine($"Nombre: {formData.Nombre}");
+		Console.WriteLine($"Correo electrónico: {formData.Descripcion}");
+	}
+}
