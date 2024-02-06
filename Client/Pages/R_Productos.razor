@@ -1,6 +1,6 @@
 ﻿@page "/r_producto"
 
-<EditForm Model="@formData" OnValidSubmit="HandleSubmit">
+<EditForm Model="@producto" OnValidSubmit="MetodoRelleno">
 	<DataAnnotationsValidator />
 	<ValidationSummary />
 	<div class="container">
@@ -14,53 +14,53 @@
 				<div class="row">
 					<div class="col-4">
 						<label for="name">Nombre Producto:</label>
-						<InputText id="name" @bind-Value="formData.Nombre" class="form-control" />
-						<ValidationMessage For="@(() => formData.Nombre)" />
+						<InputText id="name" @bind-Value="producto.Nombre" class="form-control" />
+						<ValidationMessage For="@(() => producto.Nombre)" />
 					</div>
 
 					<div class="col-4">
 						<label for="Descripcion">Decripci&oacute;n Producto:</label>
-						<InputSelect id="Descripcion" @bind-Value="formData.Descripcion" class="form-select">
+						<InputSelect id="Descripcion" @bind-Value="producto.Descripcion" class="form-select">
 							<option value="producto"></option>
 							<option value="producto1">Paracetamol</option>
 							<option value="producto2">Amoxicilina</option>
 							<option value="producto3">Ibuprofeno</option>
 						</InputSelect>
-						<ValidationMessage For="@(() => formData.Descripcion)" />
+						<ValidationMessage For="@(() => producto.Descripcion)" />
 					</div>
 
 					<div class="col-4">
 						<label for="Fecha">Fecha:</label>
-						<InputDate id="Fecha" @bind-Value="formData.Fecha" class="form-control" />
-						<ValidationMessage For="@(() => formData.Fecha)" />
+						<InputDate id="Fecha" @bind-Value="producto.Fecha" class="form-control" />
+						<ValidationMessage For="@(() => producto.Fecha)" />
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-4">
 						<label for="Cantidad">Cantidad de producto::</label>
-						<InputNumber id="Cantidad" @bind-Value="formData.Cantidad" class="form-control" min="0"/>
-						<ValidationMessage For="@(() => formData.Cantidad)" />
+						<InputNumber id="Cantidad" @bind-Value="producto.Cantidad" class="form-control" min="0"/>
+						<ValidationMessage For="@(() => producto.Cantidad)" />
 					</div>
 
 					<div class="col-4">
 						<label for="Precio">Precio del producto:</label>
-						<InputNumber id="Precio" @bind-Value="formData.Precio" class="form-control" min="0" />
-						<ValidationMessage For="@(() => formData.Precio)" />
+						<InputNumber id="Precio" @bind-Value="producto.Precio" class="form-control" min="0" />
+						<ValidationMessage For="@(() => producto.Precio)" />
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-4">
 						<label for="TipoUnidad">Tipo de unidad:</label>
-						<InputNumber id="TipoUnidad" @bind-Value="formData.TipoUnidad" class="form-control" min="0"/>
-						<ValidationMessage For="@(() => formData.TipoUnidad)" />
+						<InputNumber id="TipoUnidad" @bind-Value="producto.TipoUnidad" class="form-control" min="0"/>
+						<ValidationMessage For="@(() => producto.TipoUnidad)" />
 					</div>
 
 					<div class="col-4">
 						<label for="SucursalId">Sucursal ID:</label>
-						<InputNumber id="SucursalId" @bind-Value="formData.SucursalId" class="form-control" min="0"/>
-						<ValidationMessage For="@(() => formData.SucursalId)" />
+						<InputNumber id="SucursalId" @bind-Value="producto.SucursalId" class="form-control" min="0"/>
+						<ValidationMessage For="@(() => producto.SucursalId)" />
 					</div>
 				</div>
 				<br>
@@ -71,9 +71,9 @@
 				@*Botones*@
 				<div class="row justify-content-center">
 					<div class="col-4">
-						<button type="button" class="btn btn-outline-primary" @onclick="HandleSubmit" style="background-color: white"> <i class="oi oi-file" /> Nuevo</button>
+						<button type="button" class="btn btn-outline-primary" @onclick="MetodoRelleno" style="background-color: white"> <i class="oi oi-file" /> Nuevo</button>
 						<button type="submit" class="btn btn-outline-success" style="background-color: white"> <i class="oi oi-document" /> Guardar</button>
-						<button type="button" class="btn btn-outline-danger" @onclick="HandleSubmit" style="background-color: white"><i class="io io-trash" /> Eliminar</button>
+						<button type="button" class="btn btn-outline-danger" @onclick="MetodoRelleno" style="background-color: white"><i class="io io-trash" /> Eliminar</button>
 					</div>
 				</div>
 			</div>
@@ -82,9 +82,9 @@
 </EditForm>
 
 @code {
-	private MyFormData formData = new MyFormData();
+	private Productos producto = new Productos();
 
-	private class MyFormData
+	private class Productos
 	{
 		public string Nombre { get; set; }
 
@@ -101,11 +101,9 @@
 		public int SucursalId { get; set; }
 	}
 
-	private void HandleSubmit()
+	private void MetodoRelleno()
 	{
-		// Lógica para manejar el envío del formulario
-		// Puedes acceder a los datos en 'formData'
-		Console.WriteLine($"Nombre: {formData.Nombre}");
-		Console.WriteLine($"Correo electrónico: {formData.Descripcion}");
+		Console.WriteLine($"Nombre: {producto.Nombre}");
+		Console.WriteLine($"Correo electrónico: {producto.Descripcion}");
 	}
 }
